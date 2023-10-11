@@ -4,11 +4,11 @@
   <head>
 
     <script>
-      window.chatbotConfig = {
-        bot_id:"bfeac734-79f1-4901-9a7c-f0619069c3a6",
-      };
-    </script>
-    <script src="https://app.chatfly.co/Chat.js"></script>
+        window.chatbotConfig = {
+          bot_id:"bfeac734-79f1-4901-9a7c-f0619069c3a6",
+        };
+      </script>
+      <script src="https://app.chatfly.co/Chat.js"></script>
 
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -1509,6 +1509,20 @@ pointer-events: auto;
         right: 100px !important;
         bottom: 110px !important;
     }
+
+    @media only screen and (max-width: 480px){
+        .chatbox{
+            right: 0px !important;
+            bottom: -10px !important;
+        }
+        .chatbox__support{
+            width: 100vw !important; 
+            height: 100vh !important;
+            border-bottom-left-radius: 0px;
+            border-bottom-right-radius: 0px;
+            border-radius: 0px;
+        }
+    }
 </style>
 
 <script>
@@ -1522,13 +1536,28 @@ pointer-events: auto;
         $('.toggle_chat_fly').on('click', function(e) {
             e.preventDefault(); 
             const chatbox = $('.chatbox__support');
-            chatbox.css('visibility', 'visible');
-            chatbox.css('display', 'flex');
-            $('.chatbox').addClass('active_chatfly');  
+            
+            if ($(".chatbox").hasClass("active_chatfly")) {
+                $(".chatbox").removeClass("active_chatfly").addClass("hide_chatfly");
+                chatbox.css('visibility', 'hidden');
+                chatbox.css('display', 'none');
+            } else {
+                $(".chatbox").removeClass("hide_chatfly").addClass("active_chatfly");
+                chatbox.css('visibility', 'visible');
+                chatbox.css('display', 'flex');
+            }
 
         });
     });
 
+    $(document).ready(function() {
+        $('.close__button').on('click', function(e) {
+            e.preventDefault(); 
+            $(".chatbox").removeClass("active_chatfly").addClass("hide_chatfly");
+        });
+    });
+
+    
     if ($(window).width() < 997) {
         let lastScroll = 0
         $(window).on('scroll', function() {
