@@ -1531,9 +1531,7 @@ pointer-events: auto;
             width: 100vw !important; 
             height: calc(100vh - 55px) !important;
             max-height: -webkit-fill-available;
-            border-bottom-left-radius: 0px;
-            border-bottom-right-radius: 0px;
-            border-radius: 0px;
+            border-radius: 0px !important;
         }
     }
 </style>
@@ -1545,10 +1543,13 @@ pointer-events: auto;
         $this.parent('.contact-social').toggleClass('active-social')
     })
 
+
+
     $(document).ready(function() {
         $('.toggle_chat_fly').on('click', function(e) {
             e.preventDefault(); 
             const chatbox = $('.chatbox__support');
+            chatbox.css('opacity', '1');
             
             if ($(".chatbox").hasClass("active_chatfly")) {
                 $(".chatbox").removeClass("active_chatfly").addClass("hide_chatfly");
